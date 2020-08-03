@@ -7,10 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C02D280E24D88DCF0021A6F5 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02D280D24D88DCF0021A6F5 /* SDL2.framework */; };
+		C02D280F24D88DCF0021A6F5 /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C02D280D24D88DCF0021A6F5 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C07BD54F24D5220F0018CFC4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C07BD54E24D5220F0018CFC4 /* main.cpp */; };
+		C07BD55C24D525960018CFC4 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C07BD55A24D525960018CFC4 /* Game.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		C02D280C24D88D810021A6F5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C02D280F24D88DCF0021A6F5 /* SDL2.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C07BD54924D5220F0018CFC4 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -23,8 +37,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C02D280D24D88DCF0021A6F5 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		C07BD54B24D5220F0018CFC4 /* TwoDEngine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TwoDEngine; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07BD54E24D5220F0018CFC4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C07BD55A24D525960018CFC4 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		C07BD55B24D525960018CFC4 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C02D280E24D88DCF0021A6F5 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +61,7 @@
 			children = (
 				C07BD54D24D5220F0018CFC4 /* TwoDEngine */,
 				C07BD54C24D5220F0018CFC4 /* Products */,
+				C07BD55524D525090018CFC4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +77,18 @@
 			isa = PBXGroup;
 			children = (
 				C07BD54E24D5220F0018CFC4 /* main.cpp */,
+				C07BD55A24D525960018CFC4 /* Game.cpp */,
+				C07BD55B24D525960018CFC4 /* Game.hpp */,
 			);
 			path = TwoDEngine;
+			sourceTree = "<group>";
+		};
+		C07BD55524D525090018CFC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C02D280D24D88DCF0021A6F5 /* SDL2.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -72,6 +101,7 @@
 				C07BD54724D5220F0018CFC4 /* Sources */,
 				C07BD54824D5220F0018CFC4 /* Frameworks */,
 				C07BD54924D5220F0018CFC4 /* CopyFiles */,
+				C02D280C24D88D810021A6F5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -120,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C07BD54F24D5220F0018CFC4 /* main.cpp in Sources */,
+				C07BD55C24D525960018CFC4 /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +270,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -247,6 +282,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

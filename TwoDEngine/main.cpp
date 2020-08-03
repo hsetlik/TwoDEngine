@@ -7,9 +7,21 @@
 //
 
 #include <iostream>
+#include "Game.hpp"
+
+
+Game *game= nullptr;
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    game = new Game();
+    game-> init("TestEngine", 600, 600, 600, 600, false);
+    while(game->running()){
+        game->handleEvents();
+        game->update();
+        game->render();
+    }
+    game->clean();
     return 0;
 }
+
+
