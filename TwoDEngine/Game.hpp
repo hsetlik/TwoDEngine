@@ -8,6 +8,7 @@
 #ifndef Game_hpp
 #define Game_hpp
 #include "/Library/Frameworks/SDL2.framework/Versions/A/Headers/SDL.h"
+#include "/Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h"
 #include <stdio.h>
 class Game{
 public:
@@ -24,6 +25,7 @@ public:
     void clean();
     bool running() {return isRunning;}
 private:
+    int _redlevel = 255;
     bool isRunning;
     SDL_Window *window;
     SDL_Renderer * renderer;

@@ -23,6 +23,7 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         }
         renderer = SDL_CreateRenderer(window, -1, 0);
         if(renderer){
+            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
             printf("Renderer Created\n");
         }
         isRunning = true;
@@ -38,13 +39,20 @@ void Game::handleEvents()
         case SDL_QUIT:
             isRunning = false;
             break;
+        case SDL_MOUSEBUTTONDOWN:
+            _redlevel--;
+            printf("%d\n", _redlevel);
+            SDL_SetRenderDrawColor(renderer, _redlevel, 255, 255, 255);
+            break;
         // check for more events with more case statements here
         default:
             break;
     }
 }
 void Game::update()
-{}
+{
+    
+}
 void Game::render()
 {
     SDL_RenderClear(renderer);
@@ -56,5 +64,5 @@ void Game::clean()
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
-    printf("game cleaned\n");
+    printf("Game Cleaned\n");
 }
