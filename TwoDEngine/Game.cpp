@@ -36,22 +36,22 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         isRunning = true;
     }
     //create a temporary surface for the image
-    SDL_Surface *tempSurfaceEmpty = IMG_Load("/PNG_Assets/empty_tileQuarter.png");
+    SDL_Surface *tempSurfaceEmpty = IMG_Load("/Users/SFMAdmin/Desktop/Programming/SDL_projects/TwoDEngine/TwoDEngine/PNG_Assets/empty_tileQuarter.png");
     //convert that temporary surface to a texture for actual use
     emptyTile = SDL_CreateTextureFromSurface(renderer, tempSurfaceEmpty);
     //gets rid of that temporary surface
     SDL_FreeSurface(tempSurfaceEmpty);
     //doing the above for the rest of the PNGs
     //the hidden tile
-    SDL_Surface *tempSurfaceHidden = IMG_Load("/PNG_Assets/hidden_tileQuarter.png");
+    SDL_Surface *tempSurfaceHidden = IMG_Load("/Users/SFMAdmin/Desktop/Programming/SDL_projects/TwoDEngine/TwoDEngine/PNG_Assets/flag_tileQuarter.png");
     hiddenTile = SDL_CreateTextureFromSurface(renderer, tempSurfaceHidden);
     SDL_FreeSurface(tempSurfaceHidden);
     //the flag tile
-    SDL_Surface *tempSurfaceFlag = IMG_Load("/PNG_Assets/flag_tileQuarter.png");
+    SDL_Surface *tempSurfaceFlag = IMG_Load("/Users/SFMAdmin/Desktop/Programming/SDL_projects/TwoDEngine/TwoDEngine/PNG_Assets/hidden_tileQuarter.png");
     flagTile = SDL_CreateTextureFromSurface(renderer, tempSurfaceFlag);
     SDL_FreeSurface(tempSurfaceFlag);
     //the mine tile
-    SDL_Surface *tempSurfaceMine = IMG_Load("/PNG_Assets/mine_tileQuarter");
+    SDL_Surface *tempSurfaceMine = IMG_Load("/Users/SFMAdmin/Desktop/Programming/SDL_projects/TwoDEngine/TwoDEngine/PNG_Assets/mine_tileQuarter.png");
     mineTile = SDL_CreateTextureFromSurface(renderer, tempSurfaceMine);
     SDL_FreeSurface(tempSurfaceMine);
     printf("PNG files loaded to textures");
