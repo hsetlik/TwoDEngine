@@ -40,6 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C0286EF424D912310010E257 /* PNG_Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PNG_Assets; sourceTree = "<group>"; };
 		C02D280D24D88DCF0021A6F5 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		C0710C3624D8D6D7003E79EF /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		C07BD54B24D5220F0018CFC4 /* TwoDEngine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TwoDEngine; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +82,7 @@
 		C07BD54D24D5220F0018CFC4 /* TwoDEngine */ = {
 			isa = PBXGroup;
 			children = (
+				C0286EF424D912310010E257 /* PNG_Assets */,
 				C07BD54E24D5220F0018CFC4 /* main.cpp */,
 				C07BD55A24D525960018CFC4 /* Game.cpp */,
 				C07BD55B24D525960018CFC4 /* Game.hpp */,

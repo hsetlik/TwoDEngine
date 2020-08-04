@@ -14,7 +14,7 @@ Game *game= nullptr;
 
 int main(int argc, const char * argv[]) {
     game = new Game();
-    game-> init("TestEngine", 600, 600, 600, 600, false);
+    game-> init("TestEngine", 600, 600, 400, 400, false);
     while(game->running()){
         game->handleEvents();
         game->update();
