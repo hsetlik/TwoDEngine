@@ -10,6 +10,7 @@
 #include "/Library/Frameworks/SDL2.framework/Versions/A/Headers/SDL.h"
 #include "/Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h"
 #include <stdio.h>
+#include <fstream>
 class Game{
 public:
     Game();
@@ -29,6 +30,25 @@ private:
     bool isRunning;
     SDL_Window *window;
     SDL_Renderer * renderer;
+};
+
+class Tile{
+public:
+    Tile();
+    ~Tile();
+    void init(int xpos, int ypos, int status);
+    int minesAdjacent();
+    bool hasMine();
+    void placeMine();
+    void reveal();
+    void placeFlag();
+    void renderStatus();
+private:
+    SDL_Rect _tileRect;
+    SDL_Texture *_statusTexture;
+    int _topLeftX;
+    int _topLeftY;
+    bool _hasMine;
 };
 
 

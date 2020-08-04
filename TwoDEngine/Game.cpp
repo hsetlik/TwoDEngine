@@ -1,9 +1,14 @@
 #include "Game.hpp"
 //loading PNG images into textures
-SDL_Texture *emptyTile;
 SDL_Texture *hiddenTile;
+SDL_Texture *emptyTile;
 SDL_Texture *flagTile;
 SDL_Texture *mineTile;
+//creating a rectangle the size of one tile
+SDL_Rect tileRectSource;
+SDL_Rect tileRectDest;
+
+//Tile activeGrid[16][16];
 
 Game::Game() {
     
@@ -54,7 +59,7 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     SDL_Surface *tempSurfaceMine = IMG_Load("/Users/SFMAdmin/Desktop/Programming/SDL_projects/TwoDEngine/TwoDEngine/PNG_Assets/mine_tileQuarter.png");
     mineTile = SDL_CreateTextureFromSurface(renderer, tempSurfaceMine);
     SDL_FreeSurface(tempSurfaceMine);
-    printf("PNG files loaded to textures");
+    printf("PNG files loaded to textures\n");
 }
 void Game::handleEvents()
 {
@@ -65,9 +70,7 @@ void Game::handleEvents()
             isRunning = false;
             break;
         case SDL_MOUSEBUTTONDOWN:
-            _redlevel--;
-            printf("%d\n", _redlevel);
-            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+            //do stuff when the mouse is clicked
             break;
         // check for more events with more case statements here
         default:
@@ -76,13 +79,16 @@ void Game::handleEvents()
 }
 void Game::update()
 {
-    
+    tileRectSource.h = 25;
+    tileRectSource.w = 25;
+    tileRectDest.h = 25;
+    tileRectDest.w = 25;
 }
 void Game::render()
 {
     SDL_RenderClear(renderer);
     //draw stuff here
-    SDL_RenderCopy(renderer, hiddenTile, NULL, NULL);
+    //SDL_RenderCopy(renderer, hiddenTile, &tileRectSource, &tileRectDest);
     SDL_RenderPresent(renderer);
 }
 void Game::clean()
@@ -93,3 +99,44 @@ void Game::clean()
     SDL_Quit();
     printf("Game Cleaned\n");
 }
+// now for stuff from the tile class...
+Tile:: Tile() {
+    
+}
+
+Tile:: ~Tile() {
+    
+}
+
+void Tile::init(int xpos, int ypos, int status) {
+    _topLeftX = xpos * 25;
+    _topLeftY = ypos * 25;
+    switch (status) {
+        case 0:
+            _statusTexture = hiddenTile;
+            break;
+        case 1:
+            _statusTexture = emptyTile;
+            break;
+        case 2:
+            _statusTexture = flagTile;
+            break;
+        case 3:
+            _statusTexture = mineTile;
+            break;
+        default:
+            break;
+    }
+}
+
+int Tile:: minesAdjacent(){
+    int count = 0;
+    //math to figure out how many mines are adjacent
+    return count;
+}
+
+bool Tile:: hasMine() {
+    bool isMine = _hasMine;
+    return isMine;
+}
+
