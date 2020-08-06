@@ -37,7 +37,10 @@ public:
     Tile();
     ~Tile();
     void init(int xpos, int ypos, int status);
+    bool isAdjacentTo(int xpos, int ypos);
     int minesAdjacent();
+    int xPosition;
+    int yPosition;
     bool hasMine();
     void placeMine();
     void reveal();
@@ -46,8 +49,10 @@ public:
 private:
     SDL_Rect _tileRect;
     SDL_Texture *_statusTexture;
-    int _topLeftX;
-    int _topLeftY;
+    int _xpos;
+    int _ypos;
+    int _XtopLeftpx;
+    int _YtopLeftpx;
     bool _hasMine;
 };
 
