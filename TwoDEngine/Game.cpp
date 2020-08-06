@@ -4,12 +4,11 @@ SDL_Texture *hiddenTile;
 SDL_Texture *emptyTile;
 SDL_Texture *flagTile;
 SDL_Texture *mineTile;
-//creating a rectangle the size of one tile
-SDL_Rect tileRectSource;
-SDL_Rect tileRectDest;
 
 int gridWidth = 16;
 int gridHeight = 16;
+int tileWidth = 25;
+int tileHeight = 25;
 
 //making a grid of tile objects at the initialization of the game
 Tile activeGrid[16][16];
@@ -88,17 +87,18 @@ void Game::handleEvents()
 }
 void Game::update()
 {
-    tileRectSource.h = 25;
-    tileRectSource.w = 25;
-    tileRectDest.h = 25;
-    tileRectDest.w = 25;
 }
 void Game::render()
 {
+    printf("render started\n");
     SDL_RenderClear(renderer);
-    //draw stuff here
-    //SDL_RenderCopy(renderer, hiddenTile, &tileRectSource, &tileRectDest);
+    for (int x = 0; x < 16; x++) {
+        for (int y = 0; y < 16 ; y++) {
+            activeGrid[x][y].render(renderer);
+        }
+    }
     SDL_RenderPresent(renderer);
+    printf("render finished\n");
 }
 void Game::clean()
 {
@@ -124,6 +124,14 @@ void Tile::init(int xpos, int ypos, int status) {
     _ypos = ypos;
     xPosition = xpos;
     yPosition = ypos;
+    tileRectSource.w = tileWidth;
+    tileRectSource.h = tileHeight;
+    tileRectSource.x = _XtopLeftpx;
+    tileRectSource.y = _YtopLeftpx;
+    tileRectDest.x = _XtopLeftpx;
+    tileRectDest.y = _YtopLeftpx;
+    tileRectDest.w = tileWidth;
+    tileRectDest.h = tileHeight;
     switch (status) {
         case 0:
             _statusTexture = hiddenTile;
@@ -182,6 +190,10 @@ int Tile:: minesAdjacent(){
         }
     }
     return count;
+}
+void Tile:: render(SDL_Renderer *thisRenderer){
+    SDL_RenderCopy(thisRenderer, _statusTexture, &tileRectSource, &tileRectDest);
+    printf("rendered tile at: %d, %d\n", _xpos, _ypos);
 }
 bool Tile:: hasMine() {
     bool isMine = _hasMine;

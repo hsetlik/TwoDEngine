@@ -46,6 +46,9 @@ public:
     void reveal();
     void placeFlag();
     void renderStatus();
+    void render(SDL_Renderer *thisRenderer);
+    SDL_Rect tileRectSource;
+    SDL_Rect tileRectDest;
 private:
     SDL_Rect _tileRect;
     SDL_Texture *_statusTexture;
