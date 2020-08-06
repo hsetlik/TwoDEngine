@@ -166,7 +166,21 @@ bool Tile::isAdjacentTo(int xpos, int ypos){
 }
 int Tile:: minesAdjacent(){
     int count = 0;
-    //math to figure out how many mines are adjacent
+    Tile adjacentSpaces[8];
+    //adjacent spaces array wraps clockwise from top left corner
+    adjacentSpaces[0] = activeGrid[_xpos - 1][_ypos - 1]; //top left
+    adjacentSpaces[1] = activeGrid[_xpos][_ypos - 1]; //top center
+    adjacentSpaces[2] = activeGrid[_xpos + 1][_ypos - 1];// top right
+    adjacentSpaces[3] = activeGrid[_xpos + 1][_ypos]; // center right
+    adjacentSpaces[4] = activeGrid[_xpos + 1][_ypos + 1]; // bottom right
+    adjacentSpaces[5] = activeGrid[_xpos][_ypos + 1]; //bottom center
+    adjacentSpaces[6] = activeGrid[_xpos - 1][_ypos + 1]; //bottom left
+    adjacentSpaces[7] = activeGrid[_xpos - 1][_ypos]; // center left
+    for(int i = 0; i < 8; i++){
+        if(adjacentSpaces[i].hasMine()){
+            count++;
+        }
+    }
     return count;
 }
 bool Tile:: hasMine() {
