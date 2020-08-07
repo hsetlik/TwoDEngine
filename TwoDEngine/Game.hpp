@@ -46,7 +46,7 @@ public:
     void reveal();
     void placeFlag();
     void renderStatus();
-    void render(SDL_Renderer *thisRenderer);
+    void tileRender(SDL_Renderer *thisRenderer);
     SDL_Rect tileRectSource;
     SDL_Rect tileRectDest;
 private:
@@ -58,7 +58,5 @@ private:
     int _YtopLeftpx;
     bool _hasMine;
 };
-
-
 
 #endif /* Game_hpp */

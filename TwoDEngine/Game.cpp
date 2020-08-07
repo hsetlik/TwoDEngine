@@ -48,11 +48,11 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     SDL_FreeSurface(tempSurfaceEmpty);
     //doing the above for the rest of the PNGs
     //the hidden tile
-    SDL_Surface *tempSurfaceHidden = IMG_Load("/Users/SFMAdmin/Desktop/Programming/SDL_projects/TwoDEngine/TwoDEngine/PNG_Assets/flag_tileQuarter.png");
+    SDL_Surface *tempSurfaceHidden = IMG_Load("/Users/SFMAdmin/Desktop/Programming/SDL_projects/TwoDEngine/TwoDEngine/PNG_Assets/hidden_tileQuarter.png");
     hiddenTile = SDL_CreateTextureFromSurface(renderer, tempSurfaceHidden);
     SDL_FreeSurface(tempSurfaceHidden);
     //the flag tile
-    SDL_Surface *tempSurfaceFlag = IMG_Load("/Users/SFMAdmin/Desktop/Programming/SDL_projects/TwoDEngine/TwoDEngine/PNG_Assets/hidden_tileQuarter.png");
+    SDL_Surface *tempSurfaceFlag = IMG_Load("/Users/SFMAdmin/Desktop/Programming/SDL_projects/TwoDEngine/TwoDEngine/PNG_Assets/flag_tileQuarter.png");
     flagTile = SDL_CreateTextureFromSurface(renderer, tempSurfaceFlag);
     SDL_FreeSurface(tempSurfaceFlag);
     //the mine tile
@@ -60,14 +60,12 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     mineTile = SDL_CreateTextureFromSurface(renderer, tempSurfaceMine);
     SDL_FreeSurface(tempSurfaceMine);
     printf("PNG files loaded to textures\n");
-    
-    //setting default parameters for each tile
-    for (int x = 0; x <gridWidth; x++) {
-        for (int y = 0; y < gridHeight; y++){
-            // the 0 in the status arg makes the tile hidden by default
+    for(int x = 0; x < 16; x++){
+        for(int y = 0; y < 16; y++){
             activeGrid[x][y].init(x, y, 0);
         }
     }
+
 }
 void Game::handleEvents()
 {
@@ -90,15 +88,16 @@ void Game::update()
 }
 void Game::render()
 {
-    printf("render started\n");
+    //printf("render started\n");
     SDL_RenderClear(renderer);
     for (int x = 0; x < 16; x++) {
         for (int y = 0; y < 16 ; y++) {
-            activeGrid[x][y].render(renderer);
+            printf("Preparing to render at: %d, %d\n", x, y);
+            activeGrid[x][y].tileRender(renderer);
         }
     }
     SDL_RenderPresent(renderer);
-    printf("render finished\n");
+    //printf("render finished\n");
 }
 void Game::clean()
 {
@@ -148,7 +147,9 @@ void Tile::init(int xpos, int ypos, int status) {
         default:
             break;
     }
+    printf("Tile initialized at: %d, %d\n", xPosition, yPosition);
 }
+
 //checks if this tile instance is adjacent to the tile at xpos, ypos
 bool Tile::isAdjacentTo(int xpos, int ypos){
     Tile adjacentSpaces[8];
@@ -191,7 +192,7 @@ int Tile:: minesAdjacent(){
     }
     return count;
 }
-void Tile:: render(SDL_Renderer *thisRenderer){
+void Tile:: tileRender(SDL_Renderer *thisRenderer){
     SDL_RenderCopy(thisRenderer, _statusTexture, &tileRectSource, &tileRectDest);
     printf("rendered tile at: %d, %d\n", _xpos, _ypos);
 }
