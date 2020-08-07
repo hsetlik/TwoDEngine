@@ -123,6 +123,8 @@ void Tile::init(int xpos, int ypos, int status) {
     _ypos = ypos;
     xPosition = xpos;
     yPosition = ypos;
+    SDL_Rect tileRectSource;
+    SDL_Rect tileRectDest;
     tileRectSource.w = tileWidth;
     tileRectSource.h = tileHeight;
     tileRectSource.x = _XtopLeftpx;
