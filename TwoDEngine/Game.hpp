@@ -29,7 +29,7 @@ private:
     int _redlevel = 255;
     bool isRunning;
     SDL_Window *window;
-    SDL_Renderer * renderer;
+    SDL_Renderer *renderer;
 };
 
 class Tile{
@@ -49,9 +49,10 @@ public:
     void tileRender(SDL_Renderer *thisRenderer);
     SDL_Rect tileRectSource;
     SDL_Rect tileRectDest;
-private:
-    SDL_Rect _tileRect;
     SDL_Texture *_statusTexture;
+private:
+    SDL_Rect _tileRectSource;
+    SDL_Rect _tileRectDest;
     int _xpos;
     int _ypos;
     int _XtopLeftpx;

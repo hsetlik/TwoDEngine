@@ -90,13 +90,18 @@ void Game::render()
 {
     //printf("render started\n");
     SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, activeGrid[3][2]._statusTexture, &activeGrid[3][2].tileRectSource, &activeGrid[3][2].tileRectDest);
     for (int x = 0; x < 16; x++) {
         for (int y = 0; y < 16 ; y++) {
-            printf("Preparing to render at: %d, %d\n", x, y);
-            activeGrid[x][y].tileRender(renderer);
+            printf("Preparing to render at: %d, %d \n", x, y);
+            SDL_Texture *chosenTexture = activeGrid[x][y]._statusTexture;
+            SDL_RenderCopy(renderer, chosenTexture, &activeGrid[x][y].tileRectSource, &activeGrid[x][y].tileRectDest);
+            printf("RenderCopy complete at: %d, %d \n", x, y);
+            SDL_RenderPresent(renderer);
         }
     }
-    SDL_RenderPresent(renderer);
+    //printf("ready to present renderer \n");
+    
     //printf("render finished\n");
 }
 void Game::clean()
@@ -109,7 +114,6 @@ void Game::clean()
 }
 // now for stuff from the tile class...
 Tile:: Tile() {
-    
 }
 
 Tile:: ~Tile() {
@@ -194,8 +198,9 @@ int Tile:: minesAdjacent(){
     }
     return count;
 }
-void Tile:: tileRender(SDL_Renderer *thisRenderer){
-    SDL_RenderCopy(thisRenderer, _statusTexture, &tileRectSource, &tileRectDest);
+void Tile:: tileRender(SDL_Renderer *thisRenderer)
+{
+    SDL_RenderCopy(thisRenderer, _statusTexture, &_tileRectSource, &_tileRectDest);
     printf("rendered tile at: %d, %d\n", _xpos, _ypos);
 }
 bool Tile:: hasMine() {
